@@ -19,13 +19,14 @@ public class Hotel {
     private String id;
 
     private String title;
-    private String location_city;
-    private String location_country;
-    private String location_map;
+    private String locationCity;
+    private String locationCountry;
+    private String locationMap;
     private double ratings;
-    private int review_count;
-    private String description_short;
-    private String description_long;
-    private List<String> img_url;
+    private int reviewCount;
+    private String descriptionShort;
+    private String descriptionLong;
+    private List<String> imgUrl;
     private List<String> facilities;
+    private int favouriteCount;
 }

@@ -16,4 +16,6 @@ public interface HotelRoomService {
     public HotelRoom updateHotelRoom(HotelRoom hotelRoom, String id);
 
     public boolean deleteHotelRoom(String id);
+
+    public List<HotelRoom> getHotelRoomsByHotelId(String hotelId);
 }
