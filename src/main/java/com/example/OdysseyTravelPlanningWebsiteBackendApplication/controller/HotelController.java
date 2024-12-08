@@ -1,7 +1,6 @@
 package com.example.OdysseyTravelPlanningWebsiteBackendApplication.controller;
 
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.service.annotation.DeleteExchange;
 
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.model.Hotel;
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.service.HotelService;

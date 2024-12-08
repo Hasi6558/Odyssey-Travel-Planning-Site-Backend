@@ -6,9 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.OdysseyTravelPlanningWebsiteBackendApplication.model.Hotel;
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.model.HotelRoom;
-import com.example.OdysseyTravelPlanningWebsiteBackendApplication.repo.HotelRepository;
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.repo.HotelRoomRepository;
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.service.HotelRoomService;
 
@@ -33,7 +31,7 @@ public class HotelRoomServiceImpl implements HotelRoomService {
         return hotelRoomRepository.findById(id);
     }
 
-    public HotelRoom updateHotel(HotelRoom newHotelRoom, String id) {
+    public HotelRoom updateHotelRoom(HotelRoom newHotelRoom, String id) {
         Optional<HotelRoom> existingHotelRoom = hotelRoomRepository.findById(id);
         if (existingHotelRoom.isEmpty()) {
             throw new RuntimeException("cannot find any hotel entity for this id :" + id);
@@ -63,6 +61,11 @@ public class HotelRoomServiceImpl implements HotelRoomService {
             hotelRoomRepository.deleteById(id);
             return true;
         }
+    }
+
+    @Override
+    public List<HotelRoom> getHotelRoomsByHotelId(String hotelId) {
+        return hotelRoomRepository.findByHotelId(hotelId);
     }
 
 }

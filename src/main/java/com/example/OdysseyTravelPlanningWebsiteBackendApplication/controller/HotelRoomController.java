@@ -7,7 +7,6 @@ import com.example.OdysseyTravelPlanningWebsiteBackendApplication.service.HotelR
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,10 +27,10 @@ public class HotelRoomController {
     @Autowired
     public HotelRoomService hotelRoomService;
 
-    @PostMapping("/addHotel")
-    public String saveHotelRoom(@RequestBody String entity) {
+    @PostMapping("/addHotelRoom")
+    public ResponseEntity<HotelRoom> saveHotelRoom(@RequestBody HotelRoom hotelRoom) {
 
-        return entity;
+        return new ResponseEntity<>(hotelRoomService.saveHotelRoom(hotelRoom), HttpStatus.CREATED);
     }
 
     @GetMapping("/getAllHotelRooms")
@@ -74,6 +73,11 @@ public class HotelRoomController {
         } else {
             return new ResponseEntity<>("Cannot delete.Something wrong !", HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/getAllHotelRoomsByHotelId/{id}")
+    public ResponseEntity<List<HotelRoom>> getAllHotelRoomsByHotelId(@PathVariable String hotelId) {
+        return new ResponseEntity<>(hotelRoomService.getHotelRoomsByHotelId(hotelId), HttpStatus.OK);
     }
 
 }
