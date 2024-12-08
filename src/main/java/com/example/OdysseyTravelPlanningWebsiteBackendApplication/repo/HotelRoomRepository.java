@@ -6,6 +6,5 @@ import com.example.OdysseyTravelPlanningWebsiteBackendApplication.model.HotelRoo
 import java.util.List;
 
 public interface HotelRoomRepository extends MongoRepository<HotelRoom, String> {
-
     List<HotelRoom> findByHotelId(String hotelId);
 }
