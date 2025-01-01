@@ -4,14 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.model.User;
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.service.UserService;
@@ -29,11 +22,16 @@ public class UserController {
     }
 
     // Get All Users
-    @GetMapping
+    @GetMapping("/getAllUsers")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
+    @GetMapping("/email")
+    public ResponseEntity<User> getUserByEmail(@RequestParam String email) {
+        User user = userService.getUserByEmail(email);
+        return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
+    }
     // Get User By ID
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable String id) {
