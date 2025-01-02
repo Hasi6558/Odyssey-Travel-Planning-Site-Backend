@@ -4,10 +4,15 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.model.User;
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.repo.UserRepository;
+import com.example.OdysseyTravelPlanningWebsiteBackendApplication.service.JWTService;
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.service.UserService;
 
 @Service
@@ -15,9 +20,18 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private AuthenticationManager authManager;
+
+    @Autowired
+    private JWTService jwtService;
+
+    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+
     @Override
     public User createUser(User user) {
-        return userRepository.save(user);
+        user.setPassword(encoder.encode(user.getPassword()));
+        return userRepository.insert(user);
     }
 
     @Override
@@ -50,8 +64,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public String loginUser(User user) {
+        Authentication auth = authManager
+                .authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+        if (auth.isAuthenticated()) {
+            return jwtService.generateToken(user.getUsername());
+            // return user.getUsername() + " logged in";
+        } else {
+            return "User not logged in";
+        }
     }
-
 }

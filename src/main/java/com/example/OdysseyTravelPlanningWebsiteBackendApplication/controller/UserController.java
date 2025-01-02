@@ -16,9 +16,14 @@ public class UserController {
     private UserService userService;
 
     // Create User
-    @PostMapping("/createUser")
+    @PostMapping("/register")
     public User createUser(@RequestBody User user) {
         return userService.createUser(user);
+    }
+
+    @PostMapping("/login")
+    public String loginUser(@RequestBody User user) {
+        return userService.loginUser(user);
     }
 
     // Get All Users
@@ -27,11 +32,6 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/email")
-    public ResponseEntity<User> getUserByEmail(@RequestParam String email) {
-        User user = userService.getUserByEmail(email);
-        return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
-    }
     // Get User By ID
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable String id) {
