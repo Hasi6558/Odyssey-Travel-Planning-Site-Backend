@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,7 +20,7 @@ public class HotelRoom {
     private String hotelId;
     private String title;
     private String subtitle;
-    private String facilities;
+    private List<String> facilities;
     private String price;
     private String discountedPrice;
     private String avalCount;
