@@ -44,7 +44,7 @@ public class HotelController {
     }
 
     @GetMapping("/getHotelById/{id}")
-    public ResponseEntity<Hotel> getHotelBuId(@PathVariable String id) {
+    public ResponseEntity<Hotel> getHotelById(@PathVariable String id) {
         Optional<Hotel> hotel = hotelService.getHotelById(id);
         if (hotel.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
