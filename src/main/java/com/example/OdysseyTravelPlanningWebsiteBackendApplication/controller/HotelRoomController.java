@@ -75,9 +75,10 @@ public class HotelRoomController {
         }
     }
 
-    @GetMapping("/getAllHotelRoomsByHotelId/{id}")
+    @GetMapping("/getAllHotelRoomsByHotelId/{hotelId}")
     public ResponseEntity<List<HotelRoom>> getAllHotelRoomsByHotelId(@PathVariable String hotelId) {
-        return new ResponseEntity<>(hotelRoomService.getHotelRoomsByHotelId(hotelId), HttpStatus.OK);
+        List<HotelRoom> hotelRooms = hotelRoomService.getAllHotelRoomsByHotelId(hotelId);
+        return ResponseEntity.ok(hotelRooms);
     }
 
 }
