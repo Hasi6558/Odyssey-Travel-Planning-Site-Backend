@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,8 +24,8 @@ public class Restaurant {
     private int rating;
     private String description;
     private int review_count;
-    private String image_url;
-    private String facilities;
+    private List<String> image_url;
+    private List<String> facilities;
     private int favourite_count;
    
 }
