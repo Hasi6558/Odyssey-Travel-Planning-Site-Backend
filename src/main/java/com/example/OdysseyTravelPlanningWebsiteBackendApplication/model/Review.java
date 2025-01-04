@@ -1,5 +1,6 @@
 package com.example.OdysseyTravelPlanningWebsiteBackendApplication.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
@@ -16,6 +17,6 @@ public class Review {
         private String reviewerName;
         private int rate;
         private String comment;
-        private LocalDateTime ratedAt;
+        private LocalDate ratedAt;
 
 }
