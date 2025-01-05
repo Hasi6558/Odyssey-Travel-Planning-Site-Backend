@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/reviews")
+@CrossOrigin(origins = "*")
 public class ReviewController {
 
     @Autowired
@@ -63,5 +64,9 @@ public class ReviewController {
     } catch (RuntimeException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Review not found with ID: " + id);
     }
+    }
+    @GetMapping("getReviewByReviewdId/{reviewdItemId}")
+    public List<Review> getReviewsByReviewdItemId(@PathVariable String reviewdItemId) {
+        return reviewService.getReviewsByReviewdItemId(reviewdItemId);
     }
 }
