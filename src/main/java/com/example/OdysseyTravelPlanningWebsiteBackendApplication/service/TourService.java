@@ -16,4 +16,7 @@ public interface TourService {
 
     public boolean deleteTour(String id);
 
+    public List<Tour> searchToursByCity(String searchTerm);
+
+
 }
