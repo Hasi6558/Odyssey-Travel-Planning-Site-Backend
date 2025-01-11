@@ -21,7 +21,7 @@ public class HotelRoom {
     private String title;
     private String subtitle;
     private List<String> facilities;
-    private String price;
+    private double price;
     private String discountedPrice;
     private String avalCount;
 
