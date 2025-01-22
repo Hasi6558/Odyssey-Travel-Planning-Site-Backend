@@ -43,9 +43,10 @@ public class SecurityConfig {
         return http
                 .csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(request -> request
-                        .anyRequest().permitAll()
-                        )
-                // .formLogin(Customizer.withDefaults())
+                        .requestMatchers("/api/users/login", "/api/users/register", "/api/hotels/*",
+                                "/api/restaurant/*", "/api/tours/*")
+                        .permitAll()
+                        .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
