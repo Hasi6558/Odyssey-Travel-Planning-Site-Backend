@@ -2,7 +2,6 @@ package com.example.OdysseyTravelPlanningWebsiteBackendApplication.service;
 
 import java.util.List;
 import java.util.Optional;
-
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.model.Blog;
 
 public interface BlogService {

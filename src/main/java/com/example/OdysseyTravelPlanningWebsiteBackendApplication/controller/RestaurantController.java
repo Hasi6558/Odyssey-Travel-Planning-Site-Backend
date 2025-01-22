@@ -12,7 +12,7 @@ import com.example.OdysseyTravelPlanningWebsiteBackendApplication.model.Restaura
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.service.RestaurantService;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin
 @RequestMapping("/api/restaurant")
 public class RestaurantController {
 
@@ -65,10 +65,10 @@ public class RestaurantController {
             return new ResponseEntity<>("Cannot delete.Something wrong !", HttpStatus.NOT_FOUND);
         }
     }
+
     @GetMapping("/searchRestaurantsByCity")
     public List<Restaurant> searchRestaurantsByCity(@RequestParam("searchTerm") String searchTerm) {
         return restaurantService.searchRestaurantsByCity(searchTerm);
     }
-
 
 }

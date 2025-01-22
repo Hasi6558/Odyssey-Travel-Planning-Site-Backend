@@ -1,6 +1,7 @@
 package com.example.OdysseyTravelPlanningWebsiteBackendApplication.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,6 +15,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.service.MyUserDetailsService;
 
@@ -27,6 +29,14 @@ public class SecurityConfig {
     @Autowired
     private JWTFilter jwtFilter;
 
+    private final UrlBasedCorsConfigurationSource corsConfigurationSource;
+
+    // Inject the renamed corsConfigurationSource bean
+    public SecurityConfig(
+            @Qualifier("customCorsConfigurationSource") UrlBasedCorsConfigurationSource corsConfigurationSource) {
+        this.corsConfigurationSource = corsConfigurationSource;
+    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
@@ -39,6 +49,7 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .cors(cors -> cors.configurationSource(corsConfigurationSource))
                 .build();
     }
 

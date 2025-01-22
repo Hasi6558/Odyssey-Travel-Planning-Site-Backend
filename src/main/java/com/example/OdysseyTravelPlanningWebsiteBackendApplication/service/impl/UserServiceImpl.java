@@ -1,15 +1,22 @@
 package com.example.OdysseyTravelPlanningWebsiteBackendApplication.service.impl;
 
+import java.nio.file.attribute.UserPrincipal;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.OdysseyTravelPlanningWebsiteBackendApplication.model.ApiResponse;
+import com.example.OdysseyTravelPlanningWebsiteBackendApplication.model.LoginResponse;
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.model.User;
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.repo.UserRepository;
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.service.JWTService;
@@ -64,14 +71,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String loginUser(User user) {
+    public ResponseEntity<?> loginUser(User user) {
         Authentication auth = authManager
-                .authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+                .authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(),
+                        user.getPassword()));
         if (auth.isAuthenticated()) {
-            return jwtService.generateToken(user.getUsername());
-            // return user.getUsername() + " logged in";
+            String token = jwtService.generateToken(user.getUsername());
+            String loggedInUser = userRepository.findByUsername(user.getUsername()).getId();
+            return ResponseEntity.ok(new LoginResponse("Login successful", token, loggedInUser));
         } else {
-            return "User not logged in";
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ApiResponse("User not logged in"));
         }
     }
 }
