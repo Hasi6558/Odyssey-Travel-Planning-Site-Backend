@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 
 @RestController
 @RequestMapping("/api/hotels")
-@CrossOrigin(origins = "*")
+@CrossOrigin
 public class HotelController {
 
     @Autowired

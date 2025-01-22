@@ -1,5 +1,6 @@
 package com.example.OdysseyTravelPlanningWebsiteBackendApplication.controller;
 
+import org.springframework.http.HttpHeaders;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.example.OdysseyTravelPlanningWebsiteBackendApplication.service.UserSe
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin
 public class UserController {
     @Autowired
     private UserService userService;
@@ -22,7 +24,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String loginUser(@RequestBody User user) {
+    public ResponseEntity<?> loginUser(@RequestBody User user) {
         return userService.loginUser(user);
     }
 
@@ -33,6 +35,7 @@ public class UserController {
     }
 
     // Get User By ID
+    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*")
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable String id) {
         return userService.getUserById(id)
