@@ -20,7 +20,7 @@ import com.example.OdysseyTravelPlanningWebsiteBackendApplication.model.Restaura
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.service.RestaurantService;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin
 @RequestMapping("/api/restaurant")
 public class RestaurantController {
 

@@ -1,5 +1,7 @@
 package com.example.OdysseyTravelPlanningWebsiteBackendApplication.model;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -22,8 +24,8 @@ public class Restaurant {
     private int rating;
     private String description;
     private int review_count;
-    private String image_url;
-    private String facilities;
+    private List<String> image_url;
+    private List<String> facilities;
     private int favourite_count;
-   
+
 }

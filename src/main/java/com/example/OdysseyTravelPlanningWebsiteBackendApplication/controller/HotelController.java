@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping("/api/hotels")
-@CrossOrigin(origins = "*")
+@CrossOrigin
 public class HotelController {
 
     @Autowired

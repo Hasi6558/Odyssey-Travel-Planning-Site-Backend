@@ -3,6 +3,8 @@ package com.example.OdysseyTravelPlanningWebsiteBackendApplication.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
+
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.model.User;
 
 public interface UserService {
@@ -16,5 +18,5 @@ public interface UserService {
 
     void deleteUser(String id);
 
-    String loginUser(User user);
+    ResponseEntity<?> loginUser(User user);
 }
