@@ -24,7 +24,7 @@ public class Tour {
     private int rating;
     private String description;
     private int review_count;
-    private String image_url;
+    private List<String> image_url;
     private String facilities;
     private int favourite_count;
     private List<String> guide_languages;
