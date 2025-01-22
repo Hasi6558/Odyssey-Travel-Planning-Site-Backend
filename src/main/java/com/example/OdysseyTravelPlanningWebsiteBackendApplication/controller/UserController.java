@@ -35,7 +35,7 @@ public class UserController {
     }
 
     // Get User By ID
-    @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*")
+    // @CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*")
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable String id) {
         return userService.getUserById(id)
