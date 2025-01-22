@@ -66,4 +66,9 @@ public class TourServiceImpl implements TourService {
             return true;
         }
     }
+
+    @Override
+    public List<Tour> searchToursByCity(String searchTerm) {
+        return tourRepository.findByCityContaining(searchTerm);
+    }
 }

@@ -16,4 +16,6 @@ public interface RestaurantService {
     public Restaurant updateRestaurant(Restaurant restaurant, String id);
 
     public boolean deleteRestaurant(String id);
+
+    public List<Restaurant> searchRestaurantsByCity(String searchTerm);
 }

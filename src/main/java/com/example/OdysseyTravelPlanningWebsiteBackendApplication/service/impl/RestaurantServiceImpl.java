@@ -65,5 +65,10 @@ public class RestaurantServiceImpl implements RestaurantService {
         }
     }
 
-   
+    @Override
+    public List<Restaurant> searchRestaurantsByCity(String searchTerm) {
+        return restaurantRepository.findByCityContaining(searchTerm);
+    }
+
+
 }

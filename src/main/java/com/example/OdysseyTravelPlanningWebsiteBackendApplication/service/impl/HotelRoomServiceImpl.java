@@ -64,8 +64,10 @@ public class HotelRoomServiceImpl implements HotelRoomService {
     }
 
     @Override
-    public List<HotelRoom> getHotelRoomsByHotelId(String hotelId) {
+    public List<HotelRoom> getAllHotelRoomsByHotelId(String hotelId) {
         return hotelRoomRepository.findByHotelId(hotelId);
     }
+
+
 
 }

@@ -65,4 +65,9 @@ public class HotelServiceImpl implements HotelService {
         }
     }
 
+    @Override
+    public List<Hotel> searchHotelsByCitySubstring(String searchTerm) {
+        return hotelRepository.findByLocationCitySubstring(searchTerm);
+    }
+
 }

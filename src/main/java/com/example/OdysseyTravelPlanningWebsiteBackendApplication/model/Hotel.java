@@ -29,4 +29,5 @@ public class Hotel {
     private List<String> imgUrl;
     private List<String> facilities;
     private int favouriteCount;
+    private String searchedCity;
 }

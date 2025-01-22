@@ -1,6 +1,6 @@
 package com.example.OdysseyTravelPlanningWebsiteBackendApplication.controller;
 
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.model.Tour;
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.service.TourService;
@@ -10,14 +10,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
 @CrossOrigin("*")
@@ -75,4 +67,15 @@ public class TourController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/searchToursByCity")
+    public ResponseEntity<List<Tour>> searchToursByCity(@RequestParam("searchTerm") String searchTerm) {
+        List<Tour> tours = tourService.searchToursByCity(searchTerm);
+        if (tours.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(tours, HttpStatus.OK);
+        }
+    }
+
 }
