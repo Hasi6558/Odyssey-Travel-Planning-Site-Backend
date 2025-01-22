@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/favourites")
-@CrossOrigin(origins = "*")
+@CrossOrigin
 public class FavouriteController {
 
     private final FavouriteService favouriteService;
