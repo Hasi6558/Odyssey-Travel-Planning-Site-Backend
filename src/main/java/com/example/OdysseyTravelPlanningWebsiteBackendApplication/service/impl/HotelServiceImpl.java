@@ -1,6 +1,7 @@
 package com.example.OdysseyTravelPlanningWebsiteBackendApplication.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.model.Hotel;
@@ -22,7 +23,8 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public List<Hotel> getAllHotels() {
-        return hotelRepository.findAll();
+
+        return hotelRepository.findAll(Sort.by(Sort.Direction.DESC,"ratings"));
     }
 
     @Override

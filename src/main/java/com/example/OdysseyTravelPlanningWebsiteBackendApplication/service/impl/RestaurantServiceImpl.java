@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.model.Restaurant;
@@ -23,7 +24,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public List<Restaurant> getAllRestaurant() {
-        return restaurantRepository.findAll();
+        return restaurantRepository.findAll(Sort.by(Sort.Direction.DESC,"rating"));
     }
 
     @Override

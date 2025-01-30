@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.model.Tour;
@@ -23,7 +24,7 @@ public class TourServiceImpl implements TourService {
 
     @Override
     public List<Tour> getAllTours() {
-        return tourRepository.findAll();
+        return tourRepository.findAll(Sort.by(Sort.Direction.DESC,"rating"));
     }
 
     @Override

@@ -16,5 +16,8 @@ public interface HotelService {
     public Hotel updateHotel(Hotel hotel, String id);
 
     public boolean deleteHotel(String id);
+
     public List<Hotel> searchHotelsByCitySubstring(String searchTerm);
+
+
 }

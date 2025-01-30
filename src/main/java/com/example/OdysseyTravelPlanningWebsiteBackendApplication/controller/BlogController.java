@@ -12,7 +12,7 @@ import com.example.OdysseyTravelPlanningWebsiteBackendApplication.service.BlogSe
 
 @RestController
 @RequestMapping("/api/blogs")
-@CrossOrigin(origins = "*")
+@CrossOrigin
 public class BlogController {
 
     @Autowired
