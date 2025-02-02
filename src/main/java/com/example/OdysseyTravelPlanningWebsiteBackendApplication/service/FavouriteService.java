@@ -7,6 +7,10 @@ import java.util.Optional;
 
 public interface FavouriteService {
     Optional<Favourite> getFavouriteById(String id);
+
     Favourite addFavourite(Favourite favourite);
+
     List<Favourite> getFavouritesByUserIdAndItemType(String userId, String itemType);
+
+    void removeFavourite(String userId, String itemId);
 }

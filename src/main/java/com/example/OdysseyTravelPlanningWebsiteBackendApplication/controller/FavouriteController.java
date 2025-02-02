@@ -28,17 +28,23 @@ public class FavouriteController {
         return favourite.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
     @PostMapping("/addFavourite")
     public ResponseEntity<Favourite> addFavourite(@RequestBody Favourite favourite) {
         Favourite savedFavourite = favouriteService.addFavourite(favourite);
         return new ResponseEntity<>(savedFavourite, HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/removeFavourite")
+    public ResponseEntity<Void> removeFavourite(@RequestParam String userId, @RequestParam String itemId) {
+        favouriteService.removeFavourite(userId, itemId);
+        return ResponseEntity.noContent().build();
+    }
+
     @GetMapping
     public ResponseEntity<List<Favourite>> getFavouritesByUserIdAndItemType(
             @RequestParam String userId,
-            @RequestParam String itemType
-    ) {
+            @RequestParam String itemType) {
         List<Favourite> favourites = favouriteService.getFavouritesByUserIdAndItemType(userId, itemType);
         return ResponseEntity.ok(favourites);
     }

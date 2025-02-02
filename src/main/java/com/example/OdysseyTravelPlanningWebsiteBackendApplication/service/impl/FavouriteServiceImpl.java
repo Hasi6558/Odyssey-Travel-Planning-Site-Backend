@@ -1,6 +1,5 @@
 package com.example.OdysseyTravelPlanningWebsiteBackendApplication.service.impl;
 
-
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.model.Favourite;
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.repo.FavouriteRepository;
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.service.FavouriteService;
@@ -33,5 +32,10 @@ public class FavouriteServiceImpl implements FavouriteService {
     @Override
     public List<Favourite> getFavouritesByUserIdAndItemType(String userId, String itemType) {
         return favouriteRepository.findByUserIdAndItemType(userId, itemType);
+    }
+
+    @Override
+    public void removeFavourite(String userId, String itemId) {
+        favouriteRepository.deleteByUserIdAndItemId(userId, itemId);
     }
 }
