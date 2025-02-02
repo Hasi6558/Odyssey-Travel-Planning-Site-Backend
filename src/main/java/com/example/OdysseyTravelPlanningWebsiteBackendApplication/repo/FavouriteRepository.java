@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface FavouriteRepository extends MongoRepository<Favourite, String> {
     List<Favourite> findByUserIdAndItemType(String userId, String itemType);
+
+    void deleteByUserIdAndItemId(String userId, String itemId);
 }
