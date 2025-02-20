@@ -24,5 +24,6 @@ public class HotelRoom {
     private double price;
     private String discountedPrice;
     private String avalCount;
+    private String roomImg;
 
 }
