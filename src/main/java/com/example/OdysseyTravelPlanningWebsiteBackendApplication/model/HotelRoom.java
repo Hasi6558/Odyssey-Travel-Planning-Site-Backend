@@ -16,7 +16,6 @@ import java.util.List;
 public class HotelRoom {
     @Id
     private String id;
-
     private String hotelId;
     private String title;
     private String subtitle;
