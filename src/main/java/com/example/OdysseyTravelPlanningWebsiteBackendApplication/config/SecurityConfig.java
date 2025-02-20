@@ -44,9 +44,8 @@ public class SecurityConfig {
                 .csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/api/users/login", "/api/users/register", "/api/tours/**", "/api/hotels/**",
-                                "/api/restaurant/**", "api/swagger-ui/**", "/api/hotelRooms/**", "/api/reviews/**",
-                                "/api/favourites/**", "/api/trip-plans/**", "/api/blogs/**", "/api/reviews/**",
-                                "api/reservations/**", "api/reservations/**", "/api/tour-packages/**")
+                                "/api/restaurant/**", "/swagger-ui/**", "/api/hotelRooms/**", "/api/reviews/**",
+                                "/api/favourites/**", "/api/trip-plans/**", "/api/blogs/**", "/api/reviews/**")
                         .permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
