@@ -15,38 +15,42 @@ import java.util.Map;
 @Service
 public class StripeServiceImpl implements StripeService {
 
-    @Value("${stripe.secret.key}")
-    private String stripeSecretKey;
+        @Value("${stripe.secret.key}")
+        private String stripeSecretKey;
 
-    @Override
-    public Map<String, String> createCheckoutSession(Long amount, String currency, String roomTitle, String roomId,
-            String userId)
-            throws StripeException {
-        Stripe.apiKey = stripeSecretKey;
+        @Override
+        public Map<String, String> createCheckoutSession(Long amount, String currency, String roomTitle, String roomId,
+                        String userId)
+                        throws StripeException {
+                Stripe.apiKey = stripeSecretKey;
 
-        SessionCreateParams params = SessionCreateParams.builder()
-                .setMode(SessionCreateParams.Mode.PAYMENT)
-                .setSuccessUrl("http://localhost:5173/success?userId=" + userId + "&roomId=" + roomId)
-                .setCancelUrl("http://localhost:5173/")
-                .addLineItem(
-                        SessionCreateParams.LineItem.builder()
-                                .setQuantity(1L)
-                                .setPriceData(
-                                        SessionCreateParams.LineItem.PriceData.builder()
-                                                .setCurrency(currency)
-                                                .setUnitAmount(amount)
-                                                .setProductData(
-                                                        SessionCreateParams.LineItem.PriceData.ProductData.builder()
-                                                                .setName(roomTitle)
+                SessionCreateParams params = SessionCreateParams.builder()
+                                .setMode(SessionCreateParams.Mode.PAYMENT)
+                                .setSuccessUrl("http://localhost:5173/payment-confirm")
+                                .setCancelUrl("http://localhost:5173/")
+                                .addLineItem(
+                                                SessionCreateParams.LineItem.builder()
+                                                                .setQuantity(1L)
+                                                                .setPriceData(
+                                                                                SessionCreateParams.LineItem.PriceData
+                                                                                                .builder()
+                                                                                                .setCurrency(currency)
+                                                                                                .setUnitAmount(amount)
+                                                                                                .setProductData(
+                                                                                                                SessionCreateParams.LineItem.PriceData.ProductData
+                                                                                                                                .builder()
+                                                                                                                                .setName(roomTitle)
+                                                                                                                                .build())
+                                                                                                .build())
                                                                 .build())
-                                                .build())
-                                .build())
-                .build();
+                                .build();
 
-        Session session = Session.create(params);
+                Session session = Session.create(params);
 
-        Map<String, String> responseData = new HashMap<>();
-        responseData.put("sessionId", session.getId());
-        return responseData;
-    }
+                Map<String, String> responseData = new HashMap<>();
+                responseData.put("sessionId", session.getId());
+                System.out.println(responseData);
+
+                return responseData;
+        }
 }

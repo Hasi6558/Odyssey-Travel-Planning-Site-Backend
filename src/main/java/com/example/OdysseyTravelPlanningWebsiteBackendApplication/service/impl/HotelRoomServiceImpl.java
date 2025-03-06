@@ -68,6 +68,4 @@ public class HotelRoomServiceImpl implements HotelRoomService {
         return hotelRoomRepository.findByHotelId(hotelId);
     }
 
-
-
 }
