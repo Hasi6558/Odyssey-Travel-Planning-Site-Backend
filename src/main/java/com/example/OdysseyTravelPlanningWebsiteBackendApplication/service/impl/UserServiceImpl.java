@@ -36,9 +36,14 @@ public class UserServiceImpl implements UserService {
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
     @Override
-    public User createUser(User user) {
+    public ResponseEntity<User> createUser(User user) {
+        User checkUser = userRepository.findByUsername(user.getUsername());
+        if (checkUser != null) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+        }
         user.setPassword(encoder.encode(user.getPassword()));
-        return userRepository.insert(user);
+        User createdUser = userRepository.insert(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
     @Override
