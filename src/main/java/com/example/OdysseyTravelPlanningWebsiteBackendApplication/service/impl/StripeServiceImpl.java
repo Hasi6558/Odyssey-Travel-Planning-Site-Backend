@@ -26,7 +26,7 @@ public class StripeServiceImpl implements StripeService {
 
                 SessionCreateParams params = SessionCreateParams.builder()
                                 .setMode(SessionCreateParams.Mode.PAYMENT)
-                                .setSuccessUrl("http://localhost:5173/payment-confirm")
+                                .setSuccessUrl("http://localhost:5173/profilePage")
                                 .setCancelUrl("http://localhost:5173/")
                                 .addLineItem(
                                                 SessionCreateParams.LineItem.builder()

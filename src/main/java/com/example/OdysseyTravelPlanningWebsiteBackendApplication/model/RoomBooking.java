@@ -16,7 +16,7 @@ public class RoomBooking {
     private String roomTitle;
     private LocalDate startDate;
     private LocalDate endDate;
-    private BigDecimal totalCost;
+    private Long totalCost;
 
     // Getters and Setters
     public String getId() {
@@ -75,11 +75,11 @@ public class RoomBooking {
         this.endDate = endDate;
     }
 
-    public BigDecimal getTotalCost() {
+    public Long getTotalCost() {
         return totalCost;
     }
 
-    public void setTotalCost(BigDecimal totalCost) {
+    public void setTotalCost(Long totalCost) {
         this.totalCost = totalCost;
     }
 }
