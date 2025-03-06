@@ -78,7 +78,10 @@ public class UserServiceImpl implements UserService {
         if (auth.isAuthenticated()) {
             String token = jwtService.generateToken(user.getUsername());
             String loggedInUser = userRepository.findByUsername(user.getUsername()).getId();
-            return ResponseEntity.ok(new LoginResponse("Login successful", token, loggedInUser));
+            String fName = userRepository.findByUsername(user.getUsername()).getFirstName();
+            String lName = userRepository.findByUsername(user.getUsername()).getLastName();
+            String fullName = fName + " " + lName;
+            return ResponseEntity.ok(new LoginResponse("Login successful", token, loggedInUser, fullName));
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ApiResponse("User not logged in"));
         }

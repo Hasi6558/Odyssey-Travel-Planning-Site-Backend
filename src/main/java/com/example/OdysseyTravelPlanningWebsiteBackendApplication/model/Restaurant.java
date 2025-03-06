@@ -29,5 +29,6 @@ public class Restaurant {
     private List<String> image_url;
     private List<String> facilities;
     private int favourite_count;
+    private double minSpend;
 
 }
