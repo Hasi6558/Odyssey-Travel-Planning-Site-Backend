@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import com.example.OdysseyTravelPlanningWebsiteBackendApplication.model.User;
 
 public interface UserService {
-    User createUser(User user);
+    ResponseEntity<User> createUser(User user);
 
     List<User> getAllUsers();
 
