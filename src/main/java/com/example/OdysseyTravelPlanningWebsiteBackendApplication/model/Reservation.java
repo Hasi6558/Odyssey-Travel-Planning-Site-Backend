@@ -2,8 +2,12 @@ package com.example.OdysseyTravelPlanningWebsiteBackendApplication.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import lombok.Data;
+
 import java.util.Date;
 
+@Data
 @Document(collection = "reservations")
 public class Reservation {
     @Id
@@ -24,5 +28,4 @@ public class Reservation {
         this.bookingDate = new Date().toString();
     }
 
-    // Getters and Setters
 }

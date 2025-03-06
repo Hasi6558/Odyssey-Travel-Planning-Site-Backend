@@ -20,7 +20,9 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public List<Reservation> getAllReservations() {
-        return reservationRepository.findAll();
+        List<Reservation> reservations = reservationRepository.findAll();
+        System.out.println("reservations ++++++++++++++" + reservations);
+        return reservations;
     }
 
     @Override
@@ -31,5 +33,10 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public void deleteReservation(String id) {
         reservationRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Reservation> getReservationsByUserId(String userId) {
+        return reservationRepository.findByUserId(userId);
     }
 }
