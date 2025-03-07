@@ -1,6 +1,5 @@
 package com.example.OdysseyTravelPlanningWebsiteBackendApplication.model;
 
-// TripPlan.java
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -15,8 +14,9 @@ public class TripPlan {
     @Id
     private String id;
     private String userId;
-    private List<List<List<Object>>> sections; // List of sections with each containing date, item title, and cost
+    private List<List<List<Object>>> sections;
     private double totalCost;
     private String draftName;
+    private int noOfSections;
     private LocalDate draftSavingTime;
 }
